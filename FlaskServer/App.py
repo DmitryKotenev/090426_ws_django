@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 """
 from flask import Flask, jsonify, request
 """
-from flask import Flask
+from flask import Flask, jsonify
 
 print('Import success')
 
