@@ -8,12 +8,14 @@ from sklearn.neighbors import KNeighborsClassifier
 """
 from flask import Flask, jsonify, request
 """
+from flask import Flask
 
 print('Import success')
 
 """
 app = Flask(__name__)
 """
+app = Flask(__name__)
 
 #load_models
 #le
@@ -138,3 +140,11 @@ if __name__ == "__main__":
     
 
 """
+
+@app.route("/api/v1/get_data", methods = ["POST", "GET"])
+def get_data():
+    return jsonify({'result': predict(0)})
+
+if __name__ == "__main__":
+    app.run(debug = True, port = 5000)
+    print("App is running")
