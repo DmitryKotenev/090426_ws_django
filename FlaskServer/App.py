@@ -1,4 +1,5 @@
 import pickle
+import os
 
 from joblib.parallel import method
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
@@ -16,21 +17,25 @@ app = Flask(__name__)
 
 #load_models
 #le
-job_LE = pickle.load(open('../FlaskServer/Models/job_LE.pkl', 'rb'))
-marital_LE = pickle.load(open('../FlaskServer/Models/marital_LE.pkl', 'rb'))
-education_LE = pickle.load(open('../FlaskServer/Models/education_LE.pkl', 'rb'))
-default_LE = pickle.load(open('../FlaskServer/Models/default_LE.pkl', 'rb'))
-housing_LE = pickle.load(open('../FlaskServer/Models/housing_LE.pkl', 'rb'))
-loan_LE	= pickle.load(open('../FlaskServer/Models/loan_LE.pkl', 'rb'))
-contact_LE	= pickle.load(open('../FlaskServer/Models/contact_LE.pkl', 'rb'))
-month_LE	= pickle.load(open('../FlaskServer/Models/month_LE.pkl', 'rb'))
-poutcome_LE	= pickle.load(open('../FlaskServer/Models/poutcome_LE.pkl', 'rb'))
+
+flaskServerDir = os.path.dirname(__file__)
+modelsDir = os.path.join(flaskServerDir, "Models")
+
+job_LE = pickle.load(open(os.path.join(modelsDir,'job_LE.pkl'), 'rb'))
+marital_LE = pickle.load(open(os.path.join(modelsDir,'marital_LE.pkl'), 'rb'))
+education_LE = pickle.load(open(os.path.join(modelsDir,'education_LE.pkl'), 'rb'))
+default_LE = pickle.load(open(os.path.join(modelsDir,'default_LE.pkl'), 'rb'))
+housing_LE = pickle.load(open(os.path.join(modelsDir,'housing_LE.pkl'), 'rb'))
+loan_LE	= pickle.load(open(os.path.join(modelsDir,'loan_LE.pkl'), 'rb'))
+contact_LE	= pickle.load(open(os.path.join(modelsDir,'contact_LE.pkl'), 'rb'))
+month_LE	= pickle.load(open(os.path.join(modelsDir,'month_LE.pkl'), 'rb'))
+poutcome_LE	= pickle.load(open(os.path.join(modelsDir,'poutcome_LE.pkl'), 'rb'))
 #predict le
-y_LE = pickle.load(open('../FlaskServer/Models/y_LE.pkl', 'rb'))
+y_LE = pickle.load(open(os.path.join(modelsDir,'y_LE.pkl'), 'rb'))
 #scaler
-num_scaler = pickle.load(open('../FlaskServer/Models/num_scaler.pkl', 'rb'))
+num_scaler = pickle.load(open(os.path.join(modelsDir,'num_scaler.pkl'), 'rb'))
 #ML models
-kNN = pickle.load(open('../FlaskServer/Models/kNN.pkl', 'rb'))
+kNN = pickle.load(open(os.path.join(modelsDir,'kNN.pkl'), 'rb'))
 
 print('Models loaded successfully')
 
