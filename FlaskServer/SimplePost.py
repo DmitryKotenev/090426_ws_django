@@ -2,7 +2,7 @@ import requests
 
 client_form = ['unemployed',
 'married',
-'prinary',
+'primary',
 'no',
 'no',
 'yes',

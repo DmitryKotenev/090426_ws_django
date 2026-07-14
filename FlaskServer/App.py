@@ -8,7 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 """
 from flask import Flask, jsonify, request
 """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 print('Import success')
 
@@ -81,11 +81,8 @@ def predict(client_data) -> str:
     :return: Результат yes/no
     """
     ##categorical
-    """
     X_cat_from_keyboard = client_data[0][0:9]
-    """
     print(X_cat_from_keyboard)
-    # print(X_cat_from_keyboard)
     """
     le_list = [job_LE,
                marital_LE,
@@ -105,9 +102,7 @@ def predict(client_data) -> str:
     print('X_cat_le:', X_le_list)
     ##num
 
-    """
     X_nums_from_keyboard = client_data[0][9:]
-    """
 
     print('X_nums', X_nums_from_keyboard)
     #объединить категориальные и числовые (в том же порядке, как и при обучении)
@@ -125,8 +120,8 @@ def predict(client_data) -> str:
     result = y_LE.inverse_transform(prediction)[0]
     return result
 
-result = predict(0)
-print("prediction = ", predict(0))
+#result = predict(0)
+#print("prediction = ", predict(0))
 
 """
 @app.route("/api/v1/get_data/", methods=["GET", "POST"])
@@ -143,7 +138,9 @@ if __name__ == "__main__":
 
 @app.route("/api/v1/get_data", methods = ["POST", "GET"])
 def get_data():
-    return jsonify({'result': predict(0)})
+    client_data = request.json['client_form'] #получаем json от клиента.
+
+    return jsonify({'result': predict(client_data)})
 
 if __name__ == "__main__":
     app.run(debug = True, port = 5000)
